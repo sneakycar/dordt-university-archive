@@ -11,7 +11,7 @@ cd /Users/dust/Downloads/dev/dordt-university-archive
 ./scripts/publish-to-github.sh
 ```
 
-Creates **`dustyaltena/dordt-university-archive`** on GitHub and pushes `main`.
+Creates **`sneakycar/dordt-university-archive`** on GitHub and pushes `main` (repo already exists — use push only).
 
 ## Manual — GitHub website
 
@@ -21,14 +21,14 @@ Creates **`dustyaltena/dordt-university-archive`** on GitHub and pushes `main`.
 
 ```bash
 cd /Users/dust/Downloads/dev/dordt-university-archive
-git remote add origin https://github.com/dustyaltena/dordt-university-archive.git
+git remote add origin https://github.com/sneakycar/dordt-university-archive.git
 git push -u origin main
 ```
 
 ## Connect Vercel
 
 1. Vercel → **dordt** project → **Settings → Git**
-2. Connect **`dustyaltena/dordt-university-archive`** (not makeawesome-baseball)
+2. Connect **`sneakycar/dordt-university-archive`** (not makeawesome-baseball)
 3. **Root Directory:** leave blank (repo root is the app)
 4. Deploy
 5. **Domains** → `dordt.dustyaltena.com`

@@ -26,4 +26,4 @@ fi
 
 git push -u origin main
 echo ""
-echo "Done. Connect Vercel project 'dordt' to: dustyaltena/${REPO_NAME}"
+echo "Done. Connect Vercel project 'dordt' to: sneakycar/${REPO_NAME}"
