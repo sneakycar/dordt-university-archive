@@ -1,17 +1,17 @@
 import type { Biography, CampusExpansion, CampusPhoto } from "./types";
 
-/** Campus imagery — Wikimedia Commons (CC) and OpenStreetMap embed. */
-export const CAMPUS_PHOTOS: CampusPhoto[] = [
+/** Campus imagery — Wikimedia Commons (CC); historical aerial via Esri Wayback on /campus. */
+export const CONTEMPORARY_CAMPUS_PHOTOS: CampusPhoto[] = [
   {
-    id: "postcard-vintage",
-    title: "Vintage postcard: Dordt College campus",
-    yearLabel: "Mid-20th century (postcard era)",
-    kind: "historic",
+    id: "campus-quadrangle-2016",
+    title: "Campus quadrangle",
+    year: 2016,
+    kind: "contemporary",
     src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Day_89._Dordt_College._%2825854050360%29.jpg/960px-Day_89._Dordt_College._%2825854050360%29.jpg",
-    alt: "Wide view of Dordt College buildings and lawn",
+    alt: "Wide view of Dordt University buildings and lawn",
     caption:
-      "Contemporary descriptions of early Dordt often cite a landscaped campus on the northeast edge of Sioux Center. A 1961 Dort College postcard survives in the Conrad and Dee Bult Postcard Collection (Calvin University).",
-    credit: "David Mulder / Wikimedia Commons (related campus view, 2016)",
+      "Documentary photograph of the present campus (2016). For mid-century postcard views, see primary sources on this page and the Wayback aerial timeline above.",
+    credit: "David Mulder / Wikimedia Commons",
     creditUrl: "https://commons.wikimedia.org/wiki/File:Day_89._Dordt_College._(25854050360).jpg",
     license: "CC BY-SA 2.0",
   },
@@ -67,21 +67,10 @@ export const CAMPUS_PHOTOS: CampusPhoto[] = [
     creditUrl: "https://commons.wikimedia.org/wiki/File:Day_266._Prairie_life._(29790769201).jpg",
     license: "CC BY-SA 2.0",
   },
-  {
-    id: "satellite-osm",
-    title: "Satellite context — Sioux Center",
-    year: 2026,
-    yearLabel: "OpenStreetMap (present day)",
-    kind: "satellite",
-    src: "",
-    alt: "Map of Dordt University area in Sioux Center, Iowa",
-    caption:
-      "Interactive map centered on Dordt (43.083°N, 96.167°W). Compare building footprints with the south-campus housing cluster (Southview, Kuyper, Squares) and the core academic complex.",
-    credit: "© OpenStreetMap contributors",
-    creditUrl: "https://www.openstreetmap.org/copyright",
-    license: "ODbL",
-  },
 ];
+
+/** @deprecated Use CONTEMPORARY_CAMPUS_PHOTOS — kept for home strip */
+export const CAMPUS_PHOTOS = CONTEMPORARY_CAMPUS_PHOTOS;
 
 export const CAMPUS_EXPANSIONS: CampusExpansion[] = [
   {

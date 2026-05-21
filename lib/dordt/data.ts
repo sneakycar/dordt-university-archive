@@ -9,7 +9,8 @@ import type {
 
 export const SITE = {
   title: "Dordt University Digital Archive",
-  subtitle: "A museum-style history of Christian higher education in Sioux Center, Iowa",
+  subtitle:
+    "Historical archives and studio works — a curatorial reading room for university history and the arts",
   motto: "Soli Deo Gloria",
   mottoEn: "Glory to God alone",
   location: "Sioux Center, Iowa",
@@ -25,6 +26,7 @@ export const SITE = {
 
 export const NAV = [
   { href: "/", label: "Exhibit Hall" },
+  { href: "/studio", label: "Studio & Arts" },
   { href: "/timeline", label: "Timeline" },
   { href: "/presidents", label: "Presidents" },
   { href: "/campus", label: "Campus" },

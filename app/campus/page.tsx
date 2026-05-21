@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CAMPUS_PLACES } from "@/lib/dordt/data";
-import { CAMPUS_EXPANSIONS, CAMPUS_PHOTOS } from "@/lib/dordt/campus-media";
+import { CAMPUS_EXPANSIONS, CONTEMPORARY_CAMPUS_PHOTOS } from "@/lib/dordt/campus-media";
 import { href } from "@/lib/dordt/paths";
+import PageHeader from "../components/PageHeader";
 import CampusPhotoGallery from "../components/CampusPhotoGallery";
 import CampusExpansionList from "../components/CampusExpansionList";
+import CampusWaybackEmbed from "../components/CampusWaybackEmbed";
 
 const PLACE_ARTIFACTS: Record<string, string> = {
   southview: "southview-apartments",
@@ -21,74 +23,90 @@ export const metadata: Metadata = {
 export default async function CampusPage() {
   return (
     <>
-      <h1 className="dordt-archive__brand-title" style={{ marginBottom: 8 }}>
-        Campus &amp; built environment
-      </h1>
-      <p className="dordt-archive__page-lead">
-        From a four-classroom building on a mink farm to a 115-acre university: residence halls,
-        south-campus apartments (Southview, Kuyper, The Squares), and partnerships with Sioux
-        Center. Historic photographs and present-day satellite context below.
-      </p>
+      <PageHeader
+        kicker="Built environment"
+        title="Campus & expansion"
+        lede="From a four-classroom building on a mink farm to a 115-acre university—read the land through historical aerial imagery, primary-source postcards, and contemporary documentary photographs."
+      />
 
-      <h2 className="dordt-archive__section-title">Photographs &amp; satellite</h2>
-      <CampusPhotoGallery photos={CAMPUS_PHOTOS} />
-      <p className="dordt-archive__page-lead" style={{ fontSize: 14, marginTop: 16 }}>
-        Vintage postcard reference:{" "}
-        <a
-          href="https://iagenweb.org/sioux/photos/pic_DordtCollege.htm"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Iowa GenWeb — Dordt College postcard
-        </a>
-        {" · "}
-        <a
-          href="https://digitalcommons.calvin.edu/hh_bult_postcards/1394/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Calvin University — 1961 Dort College postcard
-        </a>
-      </p>
+      <section className="dordt-section">
+        <p className="dordt-label">Historical aerial imagery</p>
+        <CampusWaybackEmbed />
+      </section>
 
-      <h2 className="dordt-archive__section-title" style={{ marginTop: 48 }}>
-        Campus expansion chronology
-      </h2>
-      <CampusExpansionList items={CAMPUS_EXPANSIONS} />
+      <section className="dordt-section">
+        <p className="dordt-label">Primary sources — postcards</p>
+        <div className="dordt-ref-block">
+          <p>
+            Mid-century postcard views of Dort / Dordt College are held in regional and denominational
+            collections. They are not reproduced here; consult the originals.
+          </p>
+          <ul>
+            <li>
+              <a
+                href="https://iagenweb.org/sioux/photos/pic_DordtCollege.htm"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Iowa GenWeb — Dordt College postcard
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://digitalcommons.calvin.edu/hh_bult_postcards/1394/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Calvin University — 1961 Dort College postcard (Bult Collection)
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
 
-      <h2 className="dordt-archive__section-title" style={{ marginTop: 48 }}>
-        Building guide
-      </h2>
-      <div className="dordt-archive__grid dordt-archive__grid--2">
-        {CAMPUS_PLACES.map((place) => {
-          const yearDisplay = place.year ?? place.yearNote;
-          const artifactId = PLACE_ARTIFACTS[place.id];
-          return (
-            <div key={place.id} className="dordt-archive__card" style={{ cursor: "default" }}>
-              <div className="dordt-archive__card-tag">
-                {place.type}
-                {yearDisplay ? ` · ${yearDisplay}` : ""}
+      <section className="dordt-section">
+        <p className="dordt-label">Contemporary documentation</p>
+        <p className="dordt-page-lead" style={{ marginTop: 0 }}>
+          Wikimedia Commons photographs by David Mulder (2014–2018)—present-day campus, not
+          vintage material.
+        </p>
+        <CampusPhotoGallery photos={CONTEMPORARY_CAMPUS_PHOTOS} />
+      </section>
+
+      <section className="dordt-section">
+        <p className="dordt-label">Expansion chronology</p>
+        <CampusExpansionList items={CAMPUS_EXPANSIONS} />
+      </section>
+
+      <section className="dordt-section">
+        <p className="dordt-label">Building guide</p>
+        <div className="dordt-grid dordt-grid--2">
+          {CAMPUS_PLACES.map((place) => {
+            const yearDisplay = place.year ?? place.yearNote;
+            const artifactId = PLACE_ARTIFACTS[place.id];
+            return (
+              <div key={place.id} className="dordt-card dordt-card--static">
+                <p className="dordt-card__tag">
+                  {place.type}
+                  {yearDisplay ? ` · ${yearDisplay}` : ""}
+                </p>
+                <h3>{place.name}</h3>
+                <p>{place.description}</p>
+                {place.id === "hulst-library" ? (
+                  <Link className="dordt-link" href={href("/archives")}>
+                    University archives
+                  </Link>
+                ) : null}
+                {artifactId ? (
+                  <Link className="dordt-link" href={href(`/explore/${artifactId}`)}>
+                    Artifact record
+                  </Link>
+                ) : null}
               </div>
-              <h3>{place.name}</h3>
-              <p>{place.description}</p>
-              {place.id === "hulst-library" ? (
-                <Link className="dordt-archive__timeline-link" href={href("/archives")}>
-                  University archives →
-                </Link>
-              ) : null}
-              {artifactId ? (
-                <Link
-                  className="dordt-archive__timeline-link"
-                  href={href(`/explore/${artifactId}`)}
-                  style={{ display: "block", marginTop: 8 }}
-                >
-                  Artifact record →
-                </Link>
-              ) : null}
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
+      </section>
     </>
   );
 }

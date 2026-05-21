@@ -1,8 +1,21 @@
 import type { Metadata } from "next";
+import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import ArchiveNav from "./components/ArchiveNav";
 import ArchiveFooter from "./components/ArchiveFooter";
 import { SITE } from "@/lib/dordt/data";
 import "./archive.css";
+
+const display = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-dordt-display",
+});
+
+const sans = DM_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-dordt-sans",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -19,13 +32,18 @@ export const metadata: Metadata = {
 
 export default function DordtArchiveLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="dordt-archive">
-      <div className="dordt-archive__grain" aria-hidden />
-      <div className="dordt-archive__frame">
-        <ArchiveNav />
-        <main>{children}</main>
-        <ArchiveFooter />
-      </div>
-    </div>
+    <html lang="en" className={`${display.variable} ${sans.variable}`}>
+      <body>
+        <div className="dordt-archive">
+          <div className="dordt-shell">
+            <ArchiveNav />
+            <div className="dordt-main">
+              <main>{children}</main>
+              <ArchiveFooter />
+            </div>
+          </div>
+        </div>
+      </body>
+    </html>
   );
 }

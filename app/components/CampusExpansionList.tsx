@@ -12,16 +12,16 @@ export default function CampusExpansionList({ items }: { items: CampusExpansion[
   const sorted = [...items].sort((a, b) => a.year - b.year);
 
   return (
-    <div className="dordt-archive__expansion-list">
+    <div className="dordt-expansion">
       {sorted.map((item) => {
         const yearLabel =
           item.yearEnd && item.yearEnd !== item.year
             ? `${item.year}–${item.yearEnd}`
             : String(item.year);
         return (
-          <article key={item.id} className="dordt-archive__expansion-item">
+          <article key={item.id} className="dordt-expansion__row">
             <div
-              className="dordt-archive__expansion-year"
+              className="dordt-expansion__year"
               data-certainty={item.certainty === "archival-gap" ? "gap" : undefined}
             >
               {yearLabel}
@@ -29,13 +29,13 @@ export default function CampusExpansionList({ items }: { items: CampusExpansion[
             <div>
               <h3>{item.title}</h3>
               {item.zone ? (
-                <span className="dordt-archive__expansion-zone">
+                <span className="dordt-expansion__zone">
                   {ZONE_LABELS[item.zone] ?? item.zone}
                 </span>
               ) : null}
               <p>{item.summary}</p>
               {item.certainty === "archival-gap" ? (
-                <p className="dordt-archive__expansion-note">
+                <p className="dordt-expansion__note">
                   Archival note: exact year not published online—confirm in Hulst Library campus
                   planning records.
                 </p>
